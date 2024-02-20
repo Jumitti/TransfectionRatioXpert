@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+import io
 
 import altair as alt
 import numpy as np
@@ -205,6 +206,14 @@ try:
     df_results = pd.DataFrame(list(results_dict.values()))
 
     st.dataframe(df_results, hide_index=True)
+    csv_file = df_results.to_csv(index=False)
+    excel_file = io.BytesIO()
+    df_results.to_excel(excel_file, index=False, sheet_name='Sheet1')
+    excel_file.seek(0)
+    current_date_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+    st.download_button("💾 Download table (.xlsx)", excel_file,
+                       file_name=f'TRXpert_{current_date_time}.xlsx',
+                       mime="application/vnd.ms-excel", key='download-excel')
 
 except Exception as e:
     st.write("Add the plasmids/vectors/RNA in the left panel :) A small arrow at the top left of the screen will allow you to open it if this is not the case :)")
