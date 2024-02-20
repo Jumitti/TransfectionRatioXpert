@@ -217,3 +217,4 @@ try:
 
 except Exception as e:
     st.write("Add the plasmids/vectors/RNA in the left panel :) A small arrow at the top left of the screen will allow you to open it if this is not the case :)")
+    st.write(e)
