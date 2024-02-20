@@ -43,8 +43,8 @@ if vector_for_all_mix:
 
 amount_dna_for_all = st.sidebar.toggle("Amount of DNA per well")
 if amount_dna_for_all:
-    amount_of_dna = st.sidebar.number_input('Amount of DNA per well (µg)', min_value=0.0, max_value=10.0, value=1.0,
-                                            step=0.1, help=None, key=f'amount_dna')
+    amount_of_dna = st.sidebar.number_input('Amount of DNA per well (µg)', min_value=0.000, max_value=30.000, value=1.0000,
+                                            step=0.001, help=None, key=f'amount_dna')
 
 selected_vector = False
 if vector_for_all_mix:
@@ -58,7 +58,7 @@ if vector_for_all_mix:
                 if max_slider > 0:
                     amount_dna_selected = st.sidebar.slider(
                         f'Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)',
-                        0.0, max_slider, step=0.1, key=f'amount_vector_selected{j}')
+                        0.000, max_slider, step=0.001, key=f'amount_vector_selected{j}')
                 else:
                     st.sidebar.warning(
                         f"Amount of {vector_selected if vector_selected is not None or vector_selected != '' else f'Vector {j}'}"
@@ -105,8 +105,8 @@ try:
             vector_per_mix = st.number_input('Vector(s) per condition', min_value=1, max_value=len(df),
                                              value=1 if vector_for_all_mix is False else vector_per_mix, step=1,
                                              help=None, key=f"vector_per_mix{i}")
-            amount_of_dna = st.number_input('Amount of DNA per well (µg)', min_value=0.0, max_value=10.0,
-                                            value=1.0 if amount_dna_for_all is False else amount_of_dna, step=0.1,
+            amount_of_dna = st.number_input('Amount of DNA per well (µg)', min_value=0.000, max_value=30.000,
+                                            value=1.000 if amount_dna_for_all is False else amount_of_dna, step=0.001,
                                             help=None, key=f'amount_dna{i}')
             transfection_type = st.radio("Transfection type", ["Lipofectamine (2000/3000)", 'jetPRIME'],
                                          index=transfection_type_index, key=f"transfection_type{i}", horizontal=True)
@@ -138,10 +138,10 @@ try:
                 if max_slider > 0:
                     amount_dna_selected = st.slider(
                         f'Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)',
-                        0.0, max_slider,
-                        value=0.0 if selected_vector is False or amount_dna_for_all is False else st.session_state[
+                        0.000, max_slider,
+                        value=0.000 if selected_vector is False or amount_dna_for_all is False else st.session_state[
                             f"amount_vector_selected{j}"],
-                        step=0.1, key=f'amount_vector_selected{i}-{j}')
+                        step=0.001, key=f'amount_vector_selected{i}-{j}')
                 else:
                     st.warning(
                         f"Amount of {vector_selected if vector_selected is not None or vector_selected != '' else f'Vector {j}'}"
