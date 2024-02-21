@@ -21,7 +21,8 @@ st.set_page_config(
 st.sidebar.title('🧬 Transfection Ratio Xpert')
 st.sidebar.write("Created by Minniti Julien")
 col1a, col1b = st.sidebar.columns(2)
-col1a.link_button("Help ⁉", 'https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=4)')
+col1a.link_button("Help ⁉",
+                  'https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=4)')
 col1b.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
 
 df = pd.DataFrame(
@@ -46,7 +47,8 @@ if vector_for_all_mix:
                                              help=None,
                                              key=f"vector_per_mix")
 
-amount_dna_for_all = st.sidebar.toggle("Amount of DNA per well", help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+amount_dna_for_all = st.sidebar.toggle("Amount of DNA per well",
+                                       help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
 if amount_dna_for_all:
     amount_of_dna = st.sidebar.number_input('Amount of DNA per well (µg)', min_value=0.00, max_value=30.00, value=1.00,
                                             step=0.01, key=f'amount_dna')
@@ -74,7 +76,8 @@ if vector_for_all_mix:
                     "Amount of vector available only if you select the option to define the amount of DNA desired")
             calcul_j.append([j, vector_selected, amount_dna_selected if amount_dna_for_all else ""])
 
-transfection_type_for_all = st.sidebar.toggle("Transfection type", help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+transfection_type_for_all = st.sidebar.toggle("Transfection type",
+                                              help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
 if transfection_type_for_all:
     transfection_type = st.sidebar.radio("Transfection type", ["Lipofectamine (2000/3000)", 'jetPRIME'],
                                          key=f"transfection_type", horizontal=True)
@@ -85,14 +88,15 @@ if transfection_type_for_all:
 else:
     transfection_type_index = 0
 
-dna_ratio_for_all = st.sidebar.toggle("DNA ratio", help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+dna_ratio_for_all = st.sidebar.toggle("DNA ratio",
+                                      help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
 if dna_ratio_for_all:
     st.sidebar.write("**Ratio DNA(µg)/Reagent(µL)**")
     col1, col2 = st.sidebar.columns(2, gap="small")
     dna_ratio = col1.number_input("DNA", min_value=0.1, max_value=None, value=1.0, step=0.1, help=None,
-                                    key=f"dna_ratio")
+                                  key=f"dna_ratio")
     reagent_ratio = col2.number_input("Reagent", min_value=0.1, max_value=None, value=2.0, step=0.1,
-                                        help=None, key=f"reagent_ratio")
+                                      help=None, key=f"reagent_ratio")
 
 culture_vessel_for_all = st.sidebar.toggle('Culture Vessel')
 if culture_vessel_for_all:
@@ -110,7 +114,8 @@ try:
     for i in range(1, num_columns + 1):
         with columns[i % num_columns - 1]:
             st.write('**Condition name**')
-            name_condition = st.text_input(f"Condition name", value=f"Condition  {i}", max_chars=20, key=f"condition_name{i}",
+            name_condition = st.text_input(f"Condition name", value=f"Condition  {i}", max_chars=20,
+                                           key=f"condition_name{i}",
                                            label_visibility="collapsed")
 
             st.write(f'**Number of vector(s) in {name_condition}**')
@@ -118,24 +123,27 @@ try:
                                              value=1 if vector_for_all_mix is False else vector_per_mix, step=1,
                                              help=None, key=f"vector_per_mix{i}", label_visibility="collapsed")
 
-            st.markdown(f'**Amount of DNA per well (µg)**', help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+            st.markdown(f'**Amount of DNA per well (µg)**',
+                        help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
             amount_of_dna = st.number_input('Amount of DNA per well (µg)', min_value=0.00, max_value=30.00,
                                             value=1.00 if amount_dna_for_all is False else amount_of_dna, step=0.01,
                                             help=None, key=f'amount_dna{i}', label_visibility="collapsed")
 
-            st.markdown(f'**Transfection type**', help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+            st.markdown(f'**Transfection type**',
+                        help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
             transfection_type = st.radio("Transfection type", ["Lipofectamine (2000/3000)", 'jetPRIME'],
                                          index=transfection_type_index, key=f"transfection_type{i}", horizontal=True,
-                                           label_visibility="collapsed")
+                                         label_visibility="collapsed")
 
-            st.markdown("**Ratio DNA(µg)/Reagent(µL)**", help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
+            st.markdown("**Ratio DNA(µg)/Reagent(µL)**",
+                        help=f"Please, see [HELP](https://www.notion.so/jumitti/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5)")
             col1, col2 = st.columns(2)
             dna_ratio = col1.number_input("DNA", min_value=0.1, max_value=None,
-                                        value=1.0 if dna_ratio_for_all is False else dna_ratio, step=0.1, help=None,
-                                        key=f"dna_ratio{i}")
+                                          value=1.0 if dna_ratio_for_all is False else dna_ratio, step=0.1, help=None,
+                                          key=f"dna_ratio{i}")
             reagent_ratio = col2.number_input("Reagent", min_value=0.1, max_value=None,
-                                            value=2.0 if dna_ratio_for_all is False else reagent_ratio, step=0.1,
-                                            help=None, key=f"reagent_ratio{i}")
+                                              value=2.0 if dna_ratio_for_all is False else reagent_ratio, step=0.1,
+                                              help=None, key=f"reagent_ratio{i}")
             ratio = dna_ratio / reagent_ratio
 
             st.write("**Culture Vessel**")
@@ -163,8 +171,9 @@ try:
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
 
                 if max_slider > 0:
-                    st.write(f'**Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)**')
-                    amount_dna_selected = st.slider(f'', 0.00, max_slider,
+                    st.write(
+                        f'**Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)**')
+                    amount_dna_selected = st.slider(f'DNA', 0.00, max_slider,
                                                     value=0.00 if selected_vector is False or amount_dna_for_all is False
                                                     else st.session_state[f"amount_vector_selected{j}"], step=0.01,
                                                     key=f'amount_vector_selected{i}-{j}', label_visibility="collapsed")
@@ -173,8 +182,9 @@ try:
                         f"Amount of {vector_selected if vector_selected is not None or vector_selected != '' else f'Vector {j}'}"
                         f"not available. The previous plasmid(s)/vector(s)/RNA already uses all the DNA required for transfection.")
                     amount_dna_selected = 0
-                calcul.append([i, name_condition, amount_of_dna, transfection_type, ratio, culture_vessel_value, number_wells,
-                               vector_selected, amount_dna_selected])
+                calcul.append(
+                    [i, name_condition, amount_of_dna, transfection_type, ratio, culture_vessel_value, number_wells,
+                     vector_selected, amount_dna_selected])
 
     results_dict = {}
     for i, name_condition, amount_of_dna, transfection_type, ratio, culture_vessel_value, number_wells, vector_selected, amount_dna_selected in calcul:
@@ -182,8 +192,8 @@ try:
             results_dict[vector_selected] = {
                 "Plasmid/Vector/RNA": vector_selected,
                 f"{name_condition} (µL)": (amount_dna_selected / next(item['µg/µL'] for item in vector_table
-                                                                   if item[
-                                                                       "Plasmid/Vector/RNA"] == vector_selected)) * number_wells
+                                                                      if item[
+                                                                          "Plasmid/Vector/RNA"] == vector_selected)) * number_wells
             }
         else:
             results_dict[vector_selected][f"{name_condition} (µL)"] = (amount_dna_selected / next(
@@ -192,7 +202,8 @@ try:
 
         if transfection_type not in results_dict:
             results_dict[transfection_type] = {
-                "Plasmid/Vector/RNA": transfection_type, f"{name_condition} (µL)": (amount_of_dna / ratio) * number_wells}
+                "Plasmid/Vector/RNA": transfection_type,
+                f"{name_condition} (µL)": (amount_of_dna / ratio) * number_wells}
         else:
             results_dict[transfection_type][f"{name_condition} (µL)"] = (amount_of_dna / ratio) * number_wells
 
@@ -217,7 +228,7 @@ try:
 
         if "Volume per well" not in results_dict:
             results_dict["Volume per well"] = {"Plasmid/Vector/RNA": "Volume per well",
-                                                 f"{name_condition} (µL)": culture_vessel_value}
+                                               f"{name_condition} (µL)": culture_vessel_value}
         else:
             results_dict["Volume per well"][f"{name_condition} (µL)"] = culture_vessel_value
 
@@ -261,4 +272,5 @@ try:
                        mime="application/vnd.ms-excel", key='download-excel')
 
 except Exception as e:
-    st.error(f"Something wrong happened... please contact minnitijulien06@gmail.com of [Issues](https://github.com/Jumitti/TransfectionRatioXpert) on GitHub.\n\n {e}")
+    st.error(
+        f"Something wrong happened... please contact minnitijulien06@gmail.com of [Issues](https://github.com/Jumitti/TransfectionRatioXpert) on GitHub.\n\n {e}")
