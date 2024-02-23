@@ -12,10 +12,7 @@ calcul = []
 calcul_j = []
 
 # Settings for Streamlit page
-st.set_page_config(
-    page_title="TRXpert",
-    page_icon="🧬",
-    layout="wide")
+st.set_page_config(page_title="TRXpert", page_icon="🧬", layout="wide")
 
 # Main page
 st.sidebar.title('🧬 Transfection Ratio Xpert')
@@ -26,10 +23,7 @@ col1a.link_button("Help ⁉",
 col1b.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
 
 df = pd.DataFrame(
-    [
-        {"Plasmid/Vector/RNA": "pCDNA3.1", "µg/µL": 1.5},
-        {"Plasmid/Vector/RNA": "pSBBi-GP", "µg/µL": 2}
-    ]
+    [{"Plasmid/Vector/RNA": "pCDNA3.1", "µg/µL": 1.5}, {"Plasmid/Vector/RNA": "pSBBi-GP", "µg/µL": 2}]
 )
 st.sidebar.write("**List of Plasmid/Vector/RNA**")
 df = st.sidebar.data_editor(df, key="vector", num_rows="dynamic")
@@ -228,9 +222,11 @@ try:
 
         if "Volume per well" not in results_dict:
             results_dict["Volume per well"] = {"Plasmid/Vector/RNA": "Volume per well",
-                                               f"{name_condition} (µL)": culture_vessel_value}
+                                               f"{name_condition} (µL)": culture_vessel_value if transfection_type == "jetPRIME"
+                                               else culture_vessel_value * 2}
         else:
-            results_dict["Volume per well"][f"{name_condition} (µL)"] = culture_vessel_value
+            results_dict["Volume per well"][f"{name_condition} (µL)"] = culture_vessel_value if transfection_type == "jetPRIME" \
+                else culture_vessel_value * 2
 
     for i, name_condition, amount_of_dna, transfection_type, ratio, culture_vessel_value, number_wells, vector_selected, amount_dna_selected in calcul:
         if transfection_type == "Lipofectamine (2000/3000)":
@@ -273,4 +269,5 @@ try:
 
 except Exception as e:
     st.error(
-        f"Something wrong happened... please contact minnitijulien06@gmail.com of [Issues](https://github.com/Jumitti/TransfectionRatioXpert) on GitHub.\n\n {e}")
+        f"Something wrong happened... please contact minnitijulien06@gmail.com of "
+        f"[Issues](https://github.com/Jumitti/TransfectionRatioXpert) on GitHub.\n\n {e}")
