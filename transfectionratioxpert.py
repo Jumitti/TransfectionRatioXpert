@@ -259,8 +259,12 @@ try:
 
     st.dataframe(df_results, hide_index=True)
     csv_file = df_results.to_csv(index=False)
+    csv_file2 = df.to_csv(index=False)
     excel_file = io.BytesIO()
-    df_results.to_excel(excel_file, index=False, sheet_name='Sheet1')
+    with pd.ExcelWriter(excel_file, engine='xlsxwriter') as writer:
+        df_results.to_excel(writer, index=False, sheet_name='Transfection table')
+        df.to_excel(writer, index=False, sheet_name='DNA library')
+
     excel_file.seek(0)
     current_date_time = datetime.now().strftime("%Y%m%d_%H%M%S")
     st.download_button("💾 Download table (.xlsx)", excel_file,
