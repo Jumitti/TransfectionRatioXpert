@@ -156,10 +156,10 @@ try:
                 else culture_vessel_options_jetprime[culture_vessel]
 
             for j in range(1, vector_per_mix + 1):
-                st.write(f"**Vector {j}**")
                 vector_selected = st.selectbox(f'Vector {j}',
-                                               df["Plasmid/Vector/RNA"] if selected_vector is False else [
-                                                   st.session_state[f"vector_selected{j}"]],
+                                               df["Plasmid/Vector/RNA"],
+                                               index=df["Plasmid/Vector/RNA"].to_list().index(st.session_state.get(
+                                                   f"vector_selected{j}")) if selected_vector else None,
                                                key=f'vector_selected{i}-{j}', label_visibility="collapsed")
                 sum_amount_dna_selected_same_i = sum(amount_dna_selected for item in calcul if item[0] == i)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
