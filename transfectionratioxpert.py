@@ -59,7 +59,7 @@ if vector_for_all_mix:
                 if max_slider > 0:
                     amount_dna_selected = st.sidebar.slider(
                         f'Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)',
-                        0.00, max_slider, step=0.01, key=f'amount_vector_selected{j}')
+                        0.00, max_slider, value=max_slider, step=0.01, key=f'amount_vector_selected{j}')
                 else:
                     st.sidebar.warning(
                         f"Amount of {vector_selected if vector_selected is not None or vector_selected != '' else f'Vector {j}'}"
@@ -140,15 +140,16 @@ try:
                                               help=None, key=f"reagent_ratio{i}")
             ratio = dna_ratio / reagent_ratio
 
-            st.write("**Culture Vessel**")
-            culture_vessel = st.selectbox("Culture Vessel",
+            col1b, col2b = st.columns(2)
+            col1b.write("**Culture Vessel**")
+            culture_vessel = col1b.selectbox("Culture Vessel",
                                           list(
                                               culture_vessel_options_lipo.keys()) if culture_vessel_for_all is False else [
                                               culture_vessel],
                                           key=f"culture_vessel{i}", label_visibility="collapsed")
 
-            st.write("**Number of well(s)**")
-            number_wells = st.number_input("Number of well(s)", min_value=1, max_value=None,
+            col2b.write("**Number of well(s)**")
+            number_wells = col2b.number_input("Number of well(s)", min_value=1, max_value=None,
                                            value=1 if numbers_wells_for_all is False else number_wells, step=1,
                                            help=None, key=f"number_well{i}", label_visibility="collapsed")
             culture_vessel_value = culture_vessel_options_lipo[
@@ -156,10 +157,11 @@ try:
                 else culture_vessel_options_jetprime[culture_vessel]
 
             for j in range(1, vector_per_mix + 1):
+                st.write(f'**Selection of vector {j}**')
                 vector_selected = st.selectbox(f'Vector {j}',
                                                df["Plasmid/Vector/RNA"],
                                                index=df["Plasmid/Vector/RNA"].to_list().index(st.session_state.get(
-                                                   f"vector_selected{j}")) if selected_vector else None,
+                                                   f"vector_selected{j}")) if selected_vector else 0,
                                                key=f'vector_selected{i}-{j}', label_visibility="collapsed")
                 sum_amount_dna_selected_same_i = sum(amount_dna_selected for item in calcul if item[0] == i)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
@@ -168,7 +170,7 @@ try:
                     st.write(
                         f'**Amount of {vector_selected if vector_selected is not None or vector_selected != "" else f"Vector {j}"} (µg)**')
                     amount_dna_selected = st.slider(f'DNA', 0.00, max_slider,
-                                                    value=0.00 if selected_vector is False or amount_dna_for_all is False
+                                                    value=max_slider if selected_vector is False or amount_dna_for_all is False
                                                     else st.session_state[f"amount_vector_selected{j}"], step=0.01,
                                                     key=f'amount_vector_selected{i}-{j}', label_visibility="collapsed")
                 else:
