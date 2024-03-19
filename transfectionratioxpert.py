@@ -54,7 +54,8 @@ if vector_for_all_mix:
         for j in range(1, vector_per_mix + 1):
             vector_selected = st.sidebar.selectbox(f'Vector {j}', df["Plasmid/Vector/RNA"], key=f'vector_selected{j}')
             if amount_dna_for_all:
-                sum_amount_dna_selected_same_i = sum(amount_dna_selected for item in calcul_j)
+                st.write(calcul_j)
+                sum_amount_dna_selected_same_i = sum(item[2] for item in calcul_j)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
                 if max_slider > 0:
                     amount_dna_selected = st.sidebar.slider(
