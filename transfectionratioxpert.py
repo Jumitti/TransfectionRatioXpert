@@ -163,7 +163,8 @@ try:
                                                index=df["Plasmid/Vector/RNA"].to_list().index(st.session_state.get(
                                                    f"vector_selected{j}")) if selected_vector else 0,
                                                key=f'vector_selected{i}-{j}', label_visibility="collapsed")
-                sum_amount_dna_selected_same_i = sum(amount_dna_selected for item in calcul if item[0] == i)
+
+                sum_amount_dna_selected_same_i = sum(item[8] for item in calcul)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
 
                 if max_slider > 0:
