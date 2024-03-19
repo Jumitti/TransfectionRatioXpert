@@ -142,10 +142,8 @@ try:
 
             col1b, col2b = st.columns(2)
             col1b.write("**Culture Vessel**")
-            culture_vessel = col1b.selectbox("Culture Vessel",
-                                             list(
-                                                 culture_vessel_options_lipo.keys()) if culture_vessel_for_all is False else [
-                                                 culture_vessel],
+            culture_vessel = col1b.selectbox("Culture Vessel", list(culture_vessel_options_lipo.keys()),
+                                             index=list(culture_vessel_options_lipo.keys()).index(st.session_state.get("culture_vessel")) if culture_vessel_for_all else 0,
                                              key=f"culture_vessel{i}", label_visibility="collapsed")
 
             col2b.write("**Number of well(s)**")
