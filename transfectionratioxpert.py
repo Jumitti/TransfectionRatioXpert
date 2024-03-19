@@ -54,7 +54,6 @@ if vector_for_all_mix:
         for j in range(1, vector_per_mix + 1):
             vector_selected = st.sidebar.selectbox(f'Vector {j}', df["Plasmid/Vector/RNA"], key=f'vector_selected{j}')
             if amount_dna_for_all:
-                st.write(calcul_j)
                 sum_amount_dna_selected_same_i = sum(item[2] for item in calcul_j)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
                 if max_slider > 0:
@@ -144,15 +143,15 @@ try:
             col1b, col2b = st.columns(2)
             col1b.write("**Culture Vessel**")
             culture_vessel = col1b.selectbox("Culture Vessel",
-                                          list(
-                                              culture_vessel_options_lipo.keys()) if culture_vessel_for_all is False else [
-                                              culture_vessel],
-                                          key=f"culture_vessel{i}", label_visibility="collapsed")
+                                             list(
+                                                 culture_vessel_options_lipo.keys()) if culture_vessel_for_all is False else [
+                                                 culture_vessel],
+                                             key=f"culture_vessel{i}", label_visibility="collapsed")
 
             col2b.write("**Number of well(s)**")
             number_wells = col2b.number_input("Number of well(s)", min_value=1, max_value=None,
-                                           value=1 if numbers_wells_for_all is False else number_wells, step=1,
-                                           help=None, key=f"number_well{i}", label_visibility="collapsed")
+                                              value=1 if numbers_wells_for_all is False else number_wells, step=1,
+                                              help=None, key=f"number_well{i}", label_visibility="collapsed")
             culture_vessel_value = culture_vessel_options_lipo[
                 culture_vessel] if transfection_type == "Lipofectamine (2000/3000)" \
                 else culture_vessel_options_jetprime[culture_vessel]
@@ -165,7 +164,7 @@ try:
                                                    f"vector_selected{j}")) if selected_vector else 0,
                                                key=f'vector_selected{i}-{j}', label_visibility="collapsed")
 
-                sum_amount_dna_selected_same_i = sum(item[8] for item in calcul)
+                sum_amount_dna_selected_same_i = sum(item[8] for item in calcul if item[0] == i)
                 max_slider = amount_of_dna - sum_amount_dna_selected_same_i
 
                 if max_slider > 0:
@@ -229,7 +228,8 @@ try:
                                                f"{name_condition} (µL)": culture_vessel_value if transfection_type == "jetPRIME"
                                                else culture_vessel_value * 2}
         else:
-            results_dict["Volume per well"][f"{name_condition} (µL)"] = culture_vessel_value if transfection_type == "jetPRIME" \
+            results_dict["Volume per well"][
+                f"{name_condition} (µL)"] = culture_vessel_value if transfection_type == "jetPRIME" \
                 else culture_vessel_value * 2
 
     for i, name_condition, amount_of_dna, transfection_type, ratio, culture_vessel_value, number_wells, vector_selected, amount_dna_selected in calcul:
