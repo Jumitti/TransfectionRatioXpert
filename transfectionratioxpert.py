@@ -45,11 +45,11 @@ st.sidebar.write("Created by Minniti Julien")
 col1a, col1b, col1c = st.sidebar.columns(3, gap="small")
 col1a.link_button("Help ⁉",
                   'https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=4)')
+col1b.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
 if local_test == "":
-    col1b.link_button('Download app 📥', 'https://github.com/Jumitti/TransfectionRatioXpert/releases')
+    col1c.link_button('Download app 📥', 'https://github.com/Jumitti/TransfectionRatioXpert/releases')
 else:
-    col1b.link_button('Web app 🌐', 'https://transfectionratioxpert.streamlit.app/')
-col1c.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
+    col1c.link_button('Web app 🌐', 'https://transfectionratioxpert.streamlit.app/')
 
 df = pd.DataFrame(
     [{"Plasmid/Vector/RNA": "pCDNA3.1", "µg/µL": 1.5}, {"Plasmid/Vector/RNA": "pSBBi-GP", "µg/µL": 2}]
