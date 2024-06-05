@@ -20,11 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from datetime import datetime
 import io
+import platform
+from datetime import datetime
 
 import pandas as pd
 import streamlit as st
+
+local_test = platform.processor()
 
 culture_vessel_options_lipo = {"96-well": 5, "24-well": 25, "12-well": 50, "6-well/35-mm": 125,
                                "60-mm/flask 25 cm2": 250, "10-cm/flask 75 cm2": 500, "15-cm/flask 175cm2": 750}
@@ -39,10 +42,14 @@ st.set_page_config(page_title="TRXpert", page_icon="🧬", layout="wide")
 # Main page
 st.sidebar.title('🧬 Transfection Ratio Xpert')
 st.sidebar.write("Created by Minniti Julien")
-col1a, col1b = st.sidebar.columns(2)
+col1a, col1b, col1c = st.sidebar.columns(3, gap="small")
 col1a.link_button("Help ⁉",
                   'https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=4)')
-col1b.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
+if local_test == "":
+    col1b.link_button('Download app 📥', 'https://github.com/Jumitti/TransfectionRatioXpert/releases')
+else:
+    col1b.link_button('Web app 🌐', 'https://transfectionratioxpert.streamlit.app/')
+col1c.link_button('GitHub', 'https://github.com/Jumitti/TransfectionRatioXpert')
 
 df = pd.DataFrame(
     [{"Plasmid/Vector/RNA": "pCDNA3.1", "µg/µL": 1.5}, {"Plasmid/Vector/RNA": "pSBBi-GP", "µg/µL": 2}]
