@@ -1,8 +1,10 @@
 # 🧬 Transfection Ratio Xpert
 
-**Application is accessible [HERE](https://transfectionratioxpert.streamlit.app/)**
+**🌐 Application is accessible [HERE](https://transfectionratioxpert.streamlit.app/)**
 
-**Full documentation [HERE](https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=74)**
+**🖥️ Standalone application is accessible [HERE](https://github.com/Jumitti/TransfectionRatioXpert/releases)**
+
+**📄 Full documentation [HERE](https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=74)**
 
 Cellular transfection is a fundamental technique in molecular biology for introducing nucleic acids, such as DNA or RNA, 
 into living cells. This method plays a crucial role in many areas of research, including cell biology, biotechnology and 
@@ -32,4 +34,4 @@ may contain errors. We recommend that you independently verify the results obtai
 - Efficient calculation of the number of wells required based on the specified transfection parameters.
 
 ### Credit
-Created by [Minniti Julien](https://github.com/Jumitti)
+Created by [Minniti Julien](https://github.com/Jumitti) under [MIT licence](https://github.com/Jumitti/TransfectionRatioXpert/blob/main/LICENSE)
