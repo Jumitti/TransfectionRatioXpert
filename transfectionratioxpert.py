@@ -131,6 +131,9 @@ if numbers_wells_for_all:
     number_wells = st.sidebar.number_input("Number of well(s)", min_value=1, max_value=None, value=1, step=1, help=None,
                                            key=f"number_well")
 
+st.sidebar.divider()
+st.sidebar.link_button('Under MIT licence', 'https://github.com/Jumitti/TransfectionRatioXpert/blob/main/LICENSE')
+
 columns = st.columns(num_columns)
 
 try:
