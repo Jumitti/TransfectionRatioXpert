@@ -2,7 +2,7 @@
 
 **🌐 Application is accessible [HERE](https://transfectionratioxpert.streamlit.app/)**
 
-**🖥️ Standalone application is accessible [HERE](https://github.com/Jumitti/TransfectionRatioXpert/releases)**
+**🖥️ Standalone application for WINDOWS is accessible [HERE](https://github.com/Jumitti/TransfectionRatioXpert/releases)**
 
 **📄 Full documentation [HERE](https://jumitti.notion.site/Transfection-Ratio-Xpert-c25f10537e454529a4397925fe9e68c5?pvs=74)**
 
