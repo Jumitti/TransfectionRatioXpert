@@ -1,6 +1,8 @@
 # 🧬 Transfection Ratio Xpert
 
-**🌐 Application is accessible [HERE](https://transfectionratioxpert.streamlit.app/)**
+### ⚠ THE PROJECT HAS BEEN COMPILED IN [LABMASTER](https://github.com/Jumitti/labmaster)
+
+**🌐 Application is accessible [HERE](https://labmaster.streamlit.app/)**
 
 **🖥️ Standalone application for WINDOWS is accessible [HERE](https://github.com/Jumitti/TransfectionRatioXpert/releases)**
 
